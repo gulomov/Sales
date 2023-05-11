@@ -8,12 +8,12 @@ val composeVersion =
 
 android {
     namespace = "com.myproject.sales"
-    compileSdkVersion(33)
+    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.myproject.sales"
-        minSdkVersion(24)
-        targetSdkVersion(33)
+        minSdk = 24
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -28,6 +28,15 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-android-optimize.txt"
             )
+        }
+    }
+    flavorDimensions.add("version")
+    productFlavors {
+        create("free") {
+            dimension = "version"
+        }
+        create("premium") {
+            dimension = "version"
         }
     }
     compileOptions {
