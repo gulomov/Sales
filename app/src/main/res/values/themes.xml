@@ -4,4 +4,8 @@
     <style name="Theme.Sales" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@color/purple_700</item>
     </style>
+
+    <style name="SplashScreenTheme" parent="Theme.Sales">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
 </resources>
