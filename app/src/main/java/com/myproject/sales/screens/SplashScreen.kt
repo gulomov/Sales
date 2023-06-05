@@ -14,8 +14,8 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import com.myproject.sales.R
-import com.myproject.sales.feature.IntroNav
-import com.myproject.sales.feature.MainNav
+import com.myproject.sales.feature.graph.IntroNav
+import com.myproject.sales.feature.graph.MainNav
 import kotlinx.coroutines.delay
 
 @Composable

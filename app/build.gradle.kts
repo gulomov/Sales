@@ -1,11 +1,16 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 val composeVersion =
     rootProject.extra.get("compose_ui_version") as String
 val navVersion = "2.5.3"
+val hiltVersion = "2.45"
 
 android {
     namespace = "com.myproject.sales"
@@ -27,7 +32,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-android-optimize.txt"
+                "proguard-android-optimize.txt",
             )
             signingConfig = signingConfigs.getByName("debug")
         }
@@ -67,10 +72,16 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
     implementation("androidx.compose.material:material:1.2.0")
     implementation("androidx.navigation:navigation-compose:$navVersion")
+    implementation("com.google.dagger:hilt-android:$hiltVersion")
+    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
     debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
     debugImplementation("androidx.compose.ui:ui-test-manifest:$composeVersion")
+}
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
