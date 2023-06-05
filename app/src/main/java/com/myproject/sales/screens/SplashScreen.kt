@@ -14,6 +14,8 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import com.myproject.sales.R
+import com.myproject.sales.feature.IntroNav
+import com.myproject.sales.feature.MainNav
 import kotlinx.coroutines.delay
 
 @Composable
@@ -27,17 +29,19 @@ fun SplashScreen(navController: NavController) {
             targetValue = 0.7f,
             animationSpec = tween(durationMillis = 800, easing = {
                 OvershootInterpolator(4f).getInterpolation(it)
-            })
+            }),
         )
-        delay(2000L)
-        navController.navigate("main_screen")
+        delay(1000L)
+        navController.navigate(MainNav.MAIN_ROUTE) {
+            popUpTo(IntroNav.INTRO_ROUTE)
+        }
     }
 
     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
         Image(
             painter = painterResource(id = R.drawable.app_logo),
             contentDescription = "Logo",
-            modifier = Modifier.scale(scale.value)
+            modifier = Modifier.scale(scale.value),
         )
     }
 }
