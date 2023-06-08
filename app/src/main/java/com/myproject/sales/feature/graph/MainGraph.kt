@@ -4,7 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.myproject.sales.screens.HomeScreen
+import com.myproject.sales.screens.home.HomeScreen
 
 fun NavGraphBuilder.mainGraph(navController: NavController) {
     navigation(startDestination = MainNav.MAIN_HOME_SCREEN, route = MainNav.MAIN_ROUTE) {

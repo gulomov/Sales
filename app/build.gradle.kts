@@ -5,12 +5,16 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
 }
 
 val composeVersion =
     rootProject.extra.get("compose_ui_version") as String
 val navVersion = "2.5.3"
 val hiltVersion = "2.45"
+val googleServiceVersion = rootProject.extra.get("gms_version") as String
+val firebaseBom = "32.1.0"
+val firebaseAuth = "22.0.0"
 
 android {
     namespace = "com.myproject.sales"
@@ -28,6 +32,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            isDebuggable = true
+        }
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
@@ -72,8 +79,15 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
     implementation("androidx.compose.material:material:1.2.0")
     implementation("androidx.navigation:navigation-compose:$navVersion")
-    implementation("com.google.dagger:hilt-android:$hiltVersion")
+    implementation(platform("com.google.firebase:firebase-bom:$firebaseBom"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-database-ktx")
+    implementation("com.google.firebase:firebase-auth-ktx:$firebaseAuth")
+    implementation("com.jakewharton.timber:timber:5.0.1")
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
+    implementation("com.google.dagger:hilt-android:$hiltVersion")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
