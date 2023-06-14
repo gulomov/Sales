@@ -17,7 +17,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -28,14 +27,12 @@ import com.myproject.sales.ui.theme.composables.Product
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun HomeScreen(
-    navController: NavController,
     viewModel: HomeScreenViewModel = hiltViewModel(),
 ) {
     val mutableUsers by viewModel.user.collectAsState()
     LaunchedEffect(Unit) {
         viewModel.getData()
     }
-//    mutableUsers.products?.let { TextList(it) }
     val images = mutableUsers.products?.map { it.productImage }
 
     Card(

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Sales</string>
+    <string name="bottom_nav_home">Home</string>
+    <string name="bottom_nav_discover">Discover</string>
 </resources>
