@@ -3,6 +3,7 @@ package com.myproject.sales.feature.graph
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.myproject.sales.navigation.ScreenRoute
+import com.myproject.sales.screens.dicvory.DiscoverScreen
 import com.myproject.sales.screens.home.HomeScreen
 
 fun NavGraphBuilder.mainGraph() {
@@ -14,18 +15,8 @@ fun NavGraphBuilder.mainGraph() {
     }
 
     composable(ScreenRoute.Discover.route) {
-        HomeScreen()
+        DiscoverScreen()
     }
-
-    /* navigation(startDestination = MainNav.MAIN_HOME_SCREEN, route = homeRoute) {
-         composable(ScreenRoute.Home.route) {
-             HomeScreen(navController)
-         }
-
-         composable(ScreenRoute.Discover.route) {
-             HomeScreen(navController)
-         }
-     }*/
 }
 
 object MainNav {
