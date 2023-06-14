@@ -84,6 +84,8 @@ dependencies {
     implementation("com.google.firebase:firebase-database-ktx")
     implementation("com.google.firebase:firebase-auth-ktx:$firebaseAuth")
     implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation("io.coil-kt:coil-compose:2.2.2")
+    implementation("com.google.accompanist:accompanist-pager:0.22.0-rc")
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
     kapt("androidx.hilt:hilt-compiler:1.0.0")
     implementation("com.google.dagger:hilt-android:$hiltVersion")

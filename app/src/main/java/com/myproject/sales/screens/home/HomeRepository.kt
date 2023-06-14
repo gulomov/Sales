@@ -21,11 +21,10 @@ class HomeRepositoryImpl(
     private val database: FirebaseDatabase,
 ) : HomeRepository {
     override fun getInfo(): Flow<Resource<User>> = callbackFlow {
-        database.getReference("FirstInfo").get()
+        database.getReference("home/product").get()
             .addOnCompleteListener { task ->
                 val response = if (task.isSuccessful) {
                     val user = task.result.getValue<User>()
-                    Timber.d("What is here: ${user?.userName}")
                     Resource.Success(user)
                 } else {
                     Resource.Error(task.exception?.localizedMessage.toString())
