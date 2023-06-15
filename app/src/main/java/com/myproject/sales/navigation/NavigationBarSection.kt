@@ -4,6 +4,7 @@ import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.myproject.sales.R
 
@@ -24,7 +25,13 @@ sealed class NavigationBarSection(
         route = ScreenRoute.Discover.route,
     )
 
+    object Settings : NavigationBarSection(
+        title = R.string.bottom_nav_settings,
+        icon = Icons.Filled.Settings,
+        route = ScreenRoute.Settings.route,
+    )
+
     companion object {
-        val sections = listOf(Home, Discover)
+        val sections = listOf(Home, Discover, Settings)
     }
 }

@@ -24,17 +24,8 @@ fun MyAppNavHost(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
 
     when (navBackStackEntry?.destination?.route) {
-        ScreenRoute.Splash.route -> {
-            bottomBarState.value = false
-        }
-
-        ScreenRoute.Home.route -> {
-            bottomBarState.value = true
-        }
-
-        ScreenRoute.Discover.route -> {
-            bottomBarState.value = true
-        }
+        ScreenRoute.Splash.route -> bottomBarState.value = false
+        else -> bottomBarState.value = true
     }
     Scaffold(
         bottomBar = { BottomBar(navController = navController, bottomBarState) },

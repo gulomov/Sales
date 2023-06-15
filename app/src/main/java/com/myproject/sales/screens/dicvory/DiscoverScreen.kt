@@ -24,11 +24,11 @@ fun DiscoverScreen(
     LaunchedEffect(Unit) {
         viewModel.getData()
     }
-    mutableUsers.products?.let { ProductList(it) }
+    mutableUsers.products?.let { DiscoverList(it) }
 }
 
 @Composable
-fun ProductList(
+fun DiscoverList(
     user: List<Likes>,
     modifier: Modifier = Modifier,
 ) {

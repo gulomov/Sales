@@ -1,4 +1,4 @@
-package com.myproject.sales.screens
+package com.myproject.sales.screens.splash
 
 import android.view.animation.OvershootInterpolator
 import androidx.compose.animation.core.tween

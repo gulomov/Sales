@@ -4,7 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.myproject.sales.navigation.ScreenRoute
-import com.myproject.sales.screens.SplashScreen
+import com.myproject.sales.screens.splash.SplashScreen
 
 fun NavGraphBuilder.intoGraph(navController: NavController) {
     composable(ScreenRoute.Splash.route) {

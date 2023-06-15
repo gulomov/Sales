@@ -5,10 +5,9 @@ import androidx.navigation.compose.composable
 import com.myproject.sales.navigation.ScreenRoute
 import com.myproject.sales.screens.dicvory.DiscoverScreen
 import com.myproject.sales.screens.home.HomeScreen
+import com.myproject.sales.screens.settings.SettingsScreen
 
 fun NavGraphBuilder.mainGraph() {
-    val homeRoute = ScreenRoute.Home.route
-    val discovery = ScreenRoute.Discover.route
 
     composable(ScreenRoute.Home.route) {
         HomeScreen()
@@ -17,8 +16,8 @@ fun NavGraphBuilder.mainGraph() {
     composable(ScreenRoute.Discover.route) {
         DiscoverScreen()
     }
-}
 
-object MainNav {
-    const val MAIN_HOME_SCREEN = "home_screen"
+    composable(ScreenRoute.Settings.route) {
+        SettingsScreen()
+    }
 }
