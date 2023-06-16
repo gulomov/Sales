@@ -16,7 +16,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import com.myproject.sales.R
-import com.myproject.sales.feature.graph.IntroNav
+import com.myproject.sales.navigation.graph.IntroNav
 import com.myproject.sales.navigation.ScreenRoute
 import com.myproject.sales.rememberAppState
 import kotlinx.coroutines.delay

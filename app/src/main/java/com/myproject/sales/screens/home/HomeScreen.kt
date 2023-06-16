@@ -80,20 +80,3 @@ fun ProductList(
         }
     }
 }
-
-
-@Composable
-fun TextList(
-    user: List<Likes>,
-    modifier: Modifier = Modifier,
-) {
-    LazyRow(
-        modifier = modifier,
-        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-    ) {
-        items(user) { like ->
-            Product(product = like, productSelected = {})
-        }
-    }
-}

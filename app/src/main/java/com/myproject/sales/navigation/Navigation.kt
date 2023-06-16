@@ -1,4 +1,4 @@
-package com.myproject.sales.feature
+package com.myproject.sales.navigation
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
@@ -11,8 +11,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.myproject.sales.feature.graph.intoGraph
-import com.myproject.sales.feature.graph.mainGraph
+import com.myproject.sales.navigation.graph.intoGraph
+import com.myproject.sales.navigation.graph.mainGraph
 import com.myproject.sales.navigation.ScreenRoute
 import com.myproject.sales.ui.theme.composables.BottomBar
 
@@ -25,9 +25,11 @@ fun MyAppNavHost(
 
     when (navBackStackEntry?.destination?.route) {
         ScreenRoute.Splash.route -> bottomBarState.value = false
+        ScreenRoute.Profile.route -> bottomBarState.value = false
         else -> bottomBarState.value = true
     }
     Scaffold(
+        topBar = { TopBar(navController = navController, bottomBarState = bottomBarState) },
         bottomBar = { BottomBar(navController = navController, bottomBarState) },
         content = {
             NavHost(
@@ -36,7 +38,7 @@ fun MyAppNavHost(
                 modifier = Modifier.padding(it),
             ) {
                 intoGraph(navController)
-                mainGraph()
+                mainGraph(navController)
             }
         },
     )

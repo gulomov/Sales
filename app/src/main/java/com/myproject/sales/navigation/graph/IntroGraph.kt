@@ -1,4 +1,4 @@
-package com.myproject.sales.feature.graph
+package com.myproject.sales.navigation.graph
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder

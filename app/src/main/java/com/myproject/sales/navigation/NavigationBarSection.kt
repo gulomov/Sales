@@ -28,7 +28,7 @@ sealed class NavigationBarSection(
     object Settings : NavigationBarSection(
         title = R.string.bottom_nav_settings,
         icon = Icons.Filled.Settings,
-        route = ScreenRoute.Settings.route,
+        route = ScreenRoute.Menu.route,
     )
 
     companion object {

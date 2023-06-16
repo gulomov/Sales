@@ -25,7 +25,6 @@ import com.myproject.sales.navigation.NavigationBarSection
 fun BottomBar(navController: NavController, bottomBarState: MutableState<Boolean>) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
-    val selectedIndex = remember { mutableSetOf(0) }
 
     AnimatedVisibility(
         visible = bottomBarState.value,

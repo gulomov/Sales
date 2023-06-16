@@ -10,7 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.myproject.sales.feature.MyAppNavHost
+import com.myproject.sales.navigation.MyAppNavHost
 import com.myproject.sales.ui.theme.SalesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,18 +28,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    SalesTheme {
-        Greeting("Android")
     }
 }
