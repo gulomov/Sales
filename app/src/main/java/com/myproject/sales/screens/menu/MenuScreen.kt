@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
 import com.myproject.sales.R
 import com.myproject.sales.navigation.ScreenRoute
 import com.myproject.sales.ui.theme.composables.MenuItem
@@ -69,9 +70,9 @@ fun MenuScreen(
                 modifier = Modifier
                     .padding(16.dp)
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.app_logo),
-                    contentDescription = "",
+                AsyncImage(
+                    model = "https://cataas.com/cat",
+                    contentDescription = "Cats",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .size(64.dp)
