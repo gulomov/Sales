@@ -2,8 +2,8 @@ package com.myproject.sales.screens.menu
 
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.getValue
-import com.myproject.sales.data.Resource
 import com.myproject.sales.data.PersonalInfoData
+import com.myproject.sales.data.Resource
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -28,5 +28,4 @@ class PersonalInfoRepositoryImpl(
             }
         awaitClose { close() }
     }
-
 }

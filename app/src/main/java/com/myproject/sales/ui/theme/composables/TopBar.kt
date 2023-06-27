@@ -12,12 +12,12 @@ import androidx.navigation.NavController
 import com.myproject.sales.R
 
 @Composable
-
 fun TopBar(
     navController: NavController,
     topBarVisibility: MutableState<Boolean>,
 ) {
-    AnimatedVisibility(visible = topBarVisibility.value,
+    AnimatedVisibility(
+        visible = topBarVisibility.value,
         content = {
             TopAppBar(
                 title = { Text(text = "") },
@@ -25,10 +25,11 @@ fun TopBar(
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_arrow_back),
-                            contentDescription = ""
+                            contentDescription = "",
                         )
                     }
-                }
+                },
             )
-        })
+        },
+    )
 }

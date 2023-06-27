@@ -1,7 +1,5 @@
 package com.myproject.sales.screens.menu
 
-import androidx.compose.animation.rememberSplineBasedDecay
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -14,9 +12,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -30,45 +28,46 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.myproject.sales.R
 import com.myproject.sales.navigation.ScreenRoute
 import com.myproject.sales.ui.theme.composables.MenuItem
 
 @Composable
 fun MenuScreen(
     navController: NavController,
-    viewModel: MenuViewModel = hiltViewModel()
+    viewModel: MenuViewModel = hiltViewModel(),
 ) {
     val mutableUser by viewModel.userInfo.collectAsState()
     val menuList by viewModel.menuList.collectAsState()
+
     LaunchedEffect(Unit) {
         viewModel.getUserInfo()
         viewModel.getMenuList()
     }
+
+    LaunchedEffect(Unit) {
+        viewModel.navigateToProfileScreen.collect {
+            navController.navigate(ScreenRoute.Profile.route)
+        }
+    }
     Column(
         horizontalAlignment = Alignment.Start,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Card(
             modifier = Modifier
                 .padding(16.dp)
-                .clickable(
-                    onClick = {
-                        navController.navigate(ScreenRoute.Profile.route)
-                    },
-                ),
+                .clickable(onClick = { viewModel.onNavigationToProfileClicked() }),
             shape = RoundedCornerShape(16.dp),
-            elevation = 10.dp
+            elevation = 10.dp,
         ) {
             Row(
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(16.dp),
             ) {
                 AsyncImage(
                     model = "https://cataas.com/cat",
@@ -77,12 +76,12 @@ fun MenuScreen(
                     modifier = Modifier
                         .size(64.dp)
                         .clip(CircleShape)
-                        .border(2.dp, Color.Red, CircleShape)
+                        .border(2.dp, Color.Red, CircleShape),
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .fillMaxWidth(),
                 ) {
                     Text(
                         text = mutableUser.userName.toString(),
@@ -90,7 +89,7 @@ fun MenuScreen(
                             .fillMaxWidth()
                             .wrapContentHeight(Alignment.CenterVertically)
                             .padding(top = 8.dp, bottom = 8.dp),
-                        fontSize = 14.sp
+                        fontSize = 14.sp,
                     )
                     Text(
                         text = mutableUser.name.toString(),
@@ -98,7 +97,7 @@ fun MenuScreen(
                             .fillMaxWidth()
                             .wrapContentHeight(Alignment.CenterVertically)
                             .padding(bottom = 8.dp),
-                        fontSize = 14.sp
+                        fontSize = 14.sp,
                     )
                 }
             }
@@ -115,4 +114,3 @@ fun MenuScreen(
         }
     }
 }
-

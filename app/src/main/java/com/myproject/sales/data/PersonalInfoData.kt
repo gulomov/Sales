@@ -5,5 +5,5 @@ class PersonalInfoData(
     val name: String? = null,
     val phone: String? = null,
     val points: Int? = null,
-    val userName: String? = null
+    val userName: String? = null,
 )

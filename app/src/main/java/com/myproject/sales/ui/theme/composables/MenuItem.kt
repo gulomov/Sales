@@ -19,22 +19,23 @@ import com.myproject.sales.data.MenuList
 
 @Composable
 fun MenuItem(menuList: MenuList) {
-    Card(modifier = Modifier
-        .fillMaxWidth()
-        .clickable(
-            onClick = {}
-        ),
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(
+                onClick = {},
+            ),
         shape = RoundedCornerShape(8.dp),
-        elevation = 4.dp
+        elevation = 4.dp,
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(text = menuList.title.orEmpty(), fontSize = 14.sp)
             Icon(
                 painter = painterResource(id = R.drawable.ic_arrow_right),
-                contentDescription = ""
+                contentDescription = "",
             )
         }
     }

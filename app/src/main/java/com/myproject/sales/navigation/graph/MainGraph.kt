@@ -10,7 +10,6 @@ import com.myproject.sales.screens.menu.MenuScreen
 import com.myproject.sales.screens.menu.ProfileScreen
 
 fun NavGraphBuilder.mainGraph(navController: NavController) {
-
     composable(ScreenRoute.Home.route) {
         HomeScreen()
     }
@@ -26,5 +25,4 @@ fun NavGraphBuilder.mainGraph(navController: NavController) {
     composable(ScreenRoute.Profile.route) {
         ProfileScreen(navController)
     }
-
 }

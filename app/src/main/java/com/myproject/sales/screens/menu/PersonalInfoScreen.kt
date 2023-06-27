@@ -28,7 +28,7 @@ import com.myproject.sales.ui.theme.SaveGreen
 @Composable
 fun ProfileScreen(
     navController: NavController,
-    viewModel: MenuViewModel = hiltViewModel()
+    viewModel: MenuViewModel = hiltViewModel(),
 ) {
     val mutableUser by viewModel.userInfo.collectAsState()
     var newUserName by rememberSaveable { mutableStateOf("") }
@@ -38,54 +38,77 @@ fun ProfileScreen(
         viewModel.getUserInfo()
     }
 
+    LaunchedEffect(Unit) {
+        viewModel.wasSaveButtonClicked.collect {
+            navController.popBackStack()
+        }
+    }
+
     Column(
         horizontalAlignment = Alignment.Start,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(8.dp),
     ) {
         MyOutlinedTextField(mutableUser.userName.orEmpty(), "User name", isEditingEnabled)
         MyOutlinedTextField(mutableUser.name.orEmpty(), "Name", isEditingEnabled)
         MyOutlinedTextField(mutableUser.email.orEmpty(), "Email", isEditingEnabled)
         MyOutlinedTextField(mutableUser.phone.orEmpty(), "Phone", isEditingEnabled)
         MyOutlinedTextField(mutableUser.points.toString(), "Points", isEditingEnabled)
-        Button(
-            onClick = {
-                isEditingEnabled = !isEditingEnabled
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-                .height(40.dp),
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = if (isEditingEnabled) {
-                    SaveGreen
-                } else {
-                    MaterialTheme.colors.primary
-                },
-                contentColor = Color.White
-            )
-        ) {
-            if (!isEditingEnabled) {
-                "Edit?"
-            } else {
-                "Save"
-            }.also {
-                Text(text = it)
-            }
-        }
         if (isEditingEnabled) {
             Button(
-                onClick = { isEditingEnabled = false }, modifier = Modifier
+                onClick = {
+                    isEditingEnabled = !isEditingEnabled
+                    viewModel.onSaveButtonClicked()
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+                    .height(40.dp),
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = if (isEditingEnabled) {
+                        SaveGreen
+                    } else {
+                        MaterialTheme.colors.primary
+                    },
+                    contentColor = Color.White,
+                ),
+            ) {
+                Text(text = "Save")
+            }
+
+            Button(
+                onClick = { isEditingEnabled = false },
+                modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp)
                     .height(40.dp),
                 colors = ButtonDefaults.buttonColors(
                     CancelRed,
-                    Color.White
-                )
+                    Color.White,
+                ),
             ) {
                 Text(text = "Cancel")
+            }
+        } else {
+            Button(
+                onClick = {
+                    isEditingEnabled = !isEditingEnabled
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+                    .height(40.dp),
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = if (isEditingEnabled) {
+                        SaveGreen
+                    } else {
+                        MaterialTheme.colors.primary
+                    },
+                    contentColor = Color.White,
+                ),
+            ) {
+                Text(text = "Edit?")
             }
         }
     }
@@ -95,7 +118,7 @@ fun ProfileScreen(
 fun MyOutlinedTextField(
     textValue: String,
     labelText: String,
-    isEnabled: Boolean
+    isEnabled: Boolean,
 ) {
     OutlinedTextField(
         value = textValue,
@@ -104,6 +127,6 @@ fun MyOutlinedTextField(
             .padding(8.dp),
         onValueChange = { },
         enabled = isEnabled,
-        label = { Text(text = labelText) }
+        label = { Text(text = labelText) },
     )
 }
