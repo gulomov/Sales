@@ -127,6 +127,6 @@ fun MyOutlinedTextField(
             .padding(8.dp),
         onValueChange = { },
         enabled = isEnabled,
-        label = { Text(text = labelText) },
+        label = { Text(text = labelText, style = MaterialTheme.typography.h1) },
     )
 }
