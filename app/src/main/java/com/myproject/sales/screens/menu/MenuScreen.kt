@@ -18,6 +18,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -89,7 +90,7 @@ fun MenuScreen(
                             .fillMaxWidth()
                             .wrapContentHeight(Alignment.CenterVertically)
                             .padding(top = 8.dp, bottom = 8.dp),
-                        fontSize = 14.sp,
+                        style = MaterialTheme.typography.body1,
                     )
                     Text(
                         text = mutableUser.name.toString(),

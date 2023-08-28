@@ -1,5 +1,6 @@
 package com.myproject.sales.ui.theme.composables
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -33,6 +34,7 @@ fun Product(
                 .build(),
             contentDescription = "",
             placeholder = painterResource(id = coil.base.R.drawable.ic_100tb),
+            modifier = Modifier.fillMaxSize(),
         )
     }
 }

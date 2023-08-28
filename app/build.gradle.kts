@@ -6,6 +6,7 @@ plugins {
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
     id("com.google.gms.google-services")
+    id("io.gitlab.arturbosch.detekt")
 }
 
 val composeVersion =
@@ -69,6 +70,11 @@ android {
     packagingOptions {
         resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
     }
+
+    detekt {
+        toolVersion = "1.23.1"
+        config.setFrom(file("config/detekt.yml"))
+    }
 }
 
 dependencies {
@@ -97,6 +103,7 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
     debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
     debugImplementation("androidx.compose.ui:ui-test-manifest:$composeVersion")
+    detektPlugins("ru.kode:detekt-rules-compose:1.3.0")
 }
 // Allow references to generated code
 kapt {
