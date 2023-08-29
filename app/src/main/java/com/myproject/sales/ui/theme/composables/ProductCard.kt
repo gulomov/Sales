@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.myproject.sales.data.Likes
+import com.myproject.data.Likes
 
 @Composable
 fun Product(

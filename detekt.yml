@@ -1,0 +1,17 @@
+config:
+  autoCorrect: true
+
+baseline:
+  - build/.*
+  - detekt-config.yml
+
+excludes:
+  - build/.*
+  - .*/R.class
+  - .*/R\$.*.class
+
+build:
+  maxIssues: 10
+
+style:
+  maxIssues: 5

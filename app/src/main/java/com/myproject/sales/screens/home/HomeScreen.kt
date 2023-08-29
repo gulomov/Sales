@@ -26,7 +26,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.myproject.sales.data.Likes
+import com.myproject.data.Likes
 import com.myproject.sales.ui.theme.composables.AutoSlidingCarousel
 import com.myproject.sales.ui.theme.composables.Product
 

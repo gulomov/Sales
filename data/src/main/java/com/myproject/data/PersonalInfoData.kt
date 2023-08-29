@@ -1,6 +1,7 @@
-package com.myproject.sales.data
+package com.myproject.data
 
 class PersonalInfoData(
+    val userId: Int? = null,
     val email: String? = null,
     val name: String? = null,
     val phone: String? = null,

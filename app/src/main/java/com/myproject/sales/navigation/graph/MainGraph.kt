@@ -7,7 +7,8 @@ import com.myproject.sales.navigation.ScreenRoute
 import com.myproject.sales.screens.dicvory.DiscoverScreen
 import com.myproject.sales.screens.home.HomeScreen
 import com.myproject.sales.screens.menu.MenuScreen
-import com.myproject.sales.screens.menu.ProfileScreen
+import com.myproject.sales.screens.menu.aboutapp.AboutAppScreen
+import com.myproject.sales.screens.menu.personalinfo.ProfileScreen
 
 fun NavGraphBuilder.mainGraph(navController: NavController) {
     composable(ScreenRoute.Home.route) {
@@ -19,10 +20,14 @@ fun NavGraphBuilder.mainGraph(navController: NavController) {
     }
 
     composable(ScreenRoute.Menu.route) {
-        MenuScreen(navController)
+        MenuScreen(navController = navController)
     }
 
     composable(ScreenRoute.Profile.route) {
-        ProfileScreen(navController)
+        ProfileScreen(navController = navController)
+    }
+
+    composable(ScreenRoute.AboutApp.route) {
+        AboutAppScreen()
     }
 }

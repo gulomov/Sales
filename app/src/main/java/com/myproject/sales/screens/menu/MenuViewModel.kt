@@ -2,9 +2,10 @@ package com.myproject.sales.screens.menu
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.myproject.data.PersonalInfoData
+import com.myproject.data.resource.Resource
+import com.myproject.data.screens.PersonalInfoRepository
 import com.myproject.sales.data.MenuList
-import com.myproject.sales.data.PersonalInfoData
-import com.myproject.sales.data.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -40,6 +41,17 @@ class MenuViewModel @Inject constructor(
         }
     }
 
+    fun updateUserInfo(name: String) {
+        viewModelScope.launch {
+            personalInfoRepository.updateUserInfo(name).onEach { resource ->
+                when (resource) {
+                    is Resource.Success -> Timber.d("Success")
+                    is Resource.Error -> Timber.d("Error: ${resource.error}")
+                }
+            }
+        }
+    }
+
     fun onSaveButtonClicked() {
         viewModelScope.launch {
             _wasSaveButtonClicked.emit(Unit)
@@ -55,9 +67,9 @@ class MenuViewModel @Inject constructor(
     fun getMenuList() {
         viewModelScope.launch {
             _menuList.value = listOf(
-                MenuList("Settings"),
-                MenuList("About app"),
-                MenuList("Connect me"),
+                MenuList(0, "Settings"),
+                MenuList(1, "About app"),
+                MenuList(2, "Connect me"),
             )
         }
     }

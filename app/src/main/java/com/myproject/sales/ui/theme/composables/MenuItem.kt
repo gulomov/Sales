@@ -14,16 +14,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.myproject.sales.R
 import com.myproject.sales.data.MenuList
+import com.myproject.sales.navigation.ScreenRoute
 
 @Composable
-fun MenuItem(menuList: MenuList) {
+fun MenuItem(menuList: MenuList, navController: NavController) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(
-                onClick = {},
+                onClick = {
+                    when (menuList.id) {
+                        1 -> navController.navigate(ScreenRoute.AboutApp.route)
+                    }
+                },
             ),
         shape = RoundedCornerShape(8.dp),
         elevation = 4.dp,

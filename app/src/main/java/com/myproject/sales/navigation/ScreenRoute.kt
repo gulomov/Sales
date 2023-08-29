@@ -6,4 +6,5 @@ sealed class ScreenRoute(val route: String) {
     object Splash : ScreenRoute("splash")
     object Menu : ScreenRoute("setting")
     object Profile : ScreenRoute("profile")
+    object AboutApp : ScreenRoute("about_app")
 }

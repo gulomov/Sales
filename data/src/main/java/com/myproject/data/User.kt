@@ -1,4 +1,4 @@
-package com.myproject.sales.data
+package com.myproject.data
 
 data class User(
     val name: String? = null,

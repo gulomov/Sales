@@ -1,4 +1,4 @@
-package com.myproject.sales.screens.menu
+package com.myproject.sales.screens.menu.personalinfo
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.myproject.sales.screens.menu.MenuViewModel
 import com.myproject.sales.ui.theme.CancelRed
 import com.myproject.sales.ui.theme.SaveGreen
 
@@ -32,6 +33,10 @@ fun ProfileScreen(
 ) {
     val mutableUser by viewModel.userInfo.collectAsState()
     var newUserName by rememberSaveable { mutableStateOf("") }
+    var newName by rememberSaveable { mutableStateOf("") }
+    var newEmail by rememberSaveable { mutableStateOf("") }
+    var newPhone by rememberSaveable { mutableStateOf("") }
+    var newPoints by rememberSaveable { mutableStateOf("") }
     var isEditingEnabled by rememberSaveable { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
@@ -50,16 +55,52 @@ fun ProfileScreen(
             .fillMaxWidth()
             .padding(8.dp),
     ) {
-        MyOutlinedTextField(mutableUser.userName.orEmpty(), "User name", isEditingEnabled)
-        MyOutlinedTextField(mutableUser.name.orEmpty(), "Name", isEditingEnabled)
-        MyOutlinedTextField(mutableUser.email.orEmpty(), "Email", isEditingEnabled)
-        MyOutlinedTextField(mutableUser.phone.orEmpty(), "Phone", isEditingEnabled)
-        MyOutlinedTextField(mutableUser.points.toString(), "Points", isEditingEnabled)
+        MyOutlinedTextField(
+            mutableUser.userName.orEmpty(),
+            "User name",
+            isEditingEnabled,
+            onValueChanged = { newValue ->
+                newUserName = newValue
+            },
+        )
+        MyOutlinedTextField(
+            mutableUser.name.orEmpty(),
+            "Name",
+            isEditingEnabled,
+            onValueChanged = { newValue ->
+                newName = newValue
+            },
+        )
+        MyOutlinedTextField(
+            mutableUser.email.orEmpty(),
+            "Email",
+            isEditingEnabled,
+            onValueChanged = { newValue ->
+                newEmail = newValue
+            },
+        )
+        MyOutlinedTextField(
+            mutableUser.phone.orEmpty(),
+            "Phone",
+            isEditingEnabled,
+            onValueChanged = { newValue ->
+                newPhone = newValue
+            },
+        )
+        MyOutlinedTextField(
+            mutableUser.points.toString(),
+            "Points",
+            isEditingEnabled,
+            onValueChanged = { newValue ->
+                newPoints = newValue
+            },
+        )
         if (isEditingEnabled) {
             Button(
                 onClick = {
                     isEditingEnabled = !isEditingEnabled
                     viewModel.onSaveButtonClicked()
+                    viewModel.updateUserInfo(newUserName)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -119,13 +160,18 @@ fun MyOutlinedTextField(
     textValue: String,
     labelText: String,
     isEnabled: Boolean,
+    onValueChanged: ((String) -> Unit)? = null,
 ) {
     OutlinedTextField(
         value = textValue,
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
-        onValueChange = { },
+        onValueChange = { newValue ->
+            if (isEnabled) {
+                onValueChanged?.let { it(newValue) }
+            }
+        },
         enabled = isEnabled,
         label = { Text(text = labelText, style = MaterialTheme.typography.h1) },
     )

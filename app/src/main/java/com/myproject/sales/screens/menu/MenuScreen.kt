@@ -110,7 +110,7 @@ fun MenuScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             items(menuList) { menuList ->
-                MenuItem(menuList = menuList)
+                MenuItem(menuList = menuList, navController = navController)
             }
         }
     }

@@ -2,8 +2,9 @@ package com.myproject.sales.screens.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.myproject.sales.data.Resource
-import com.myproject.sales.data.User
+import com.myproject.data.User
+import com.myproject.data.resource.Resource
+import com.myproject.data.screens.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

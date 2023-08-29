@@ -1,4 +1,4 @@
-package com.myproject.sales.data
+package com.myproject.data.resource
 
 sealed class Resource<T>(val data: T? = null, val error: String? = null) {
     class Success<T>(data: T?) : Resource<T>(data = data)
