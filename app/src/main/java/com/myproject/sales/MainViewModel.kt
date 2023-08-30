@@ -20,4 +20,5 @@ abstract class MainViewModel : ViewModel() {
             }
         }.launchIn(viewModelScope)
     }
+
 }
