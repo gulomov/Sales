@@ -1,18 +1,15 @@
 package com.myproject.sales.screens.menu
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.myproject.data.PersonalInfoData
-import com.myproject.data.resource.Resource
 import com.myproject.data.screens.PersonalInfoRepository
+import com.myproject.sales.MainViewModel
 import com.myproject.sales.data.MenuList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -20,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MenuViewModel @Inject constructor(
     private val personalInfoRepository: PersonalInfoRepository,
-) : ViewModel() {
+) : MainViewModel() {
+
     private val _userInfo = MutableStateFlow(PersonalInfoData())
     val userInfo = _userInfo.asStateFlow()
     private val _menuList = MutableStateFlow(listOf(MenuList()))
@@ -32,23 +30,19 @@ class MenuViewModel @Inject constructor(
 
     fun getUserInfo() {
         viewModelScope.launch {
-            personalInfoRepository.getUserInf().onEach { resource ->
-                when (resource) {
-                    is Resource.Success -> resource.data?.let { _userInfo.value = it }
-                    is Resource.Error -> Timber.d("What is error: ${resource.error}")
-                }
-            }.launchIn(viewModelScope)
+            personalInfoRepository.getUserInf().observeResource(
+                onSuccess = { data -> data.let { _userInfo.value = it } },
+                onError = { error -> Timber.d("What is error: $error") },
+            )
         }
     }
 
     fun updateUserInfo(name: String) {
         viewModelScope.launch {
-            personalInfoRepository.updateUserInfo(name).onEach { resource ->
-                when (resource) {
-                    is Resource.Success -> Timber.d("Success")
-                    is Resource.Error -> Timber.d("Error: ${resource.error}")
-                }
-            }
+            personalInfoRepository.updateUserInfo(name).observeResource(
+                onSuccess = { Timber.d("Success") },
+                onError = { error -> Timber.d("Error: $error") },
+            )
         }
     }
 
