@@ -1,6 +1,6 @@
 package com.myproject.data.resource
 
-sealed class Resource<T>(val data: T? = null, val error: String? = null) {
+sealed class Resource<T>(val data: T? = null, val error: Throwable? = null) {
     class Success<T>(data: T?) : Resource<T>(data = data)
-    class Error<T>(error: String, data: T? = null) : Resource<T>(data = data, error = error)
+    class Error<T>(error: Throwable, data: T? = null) : Resource<T>(data = data, error = error)
 }

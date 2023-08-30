@@ -19,9 +19,9 @@ inline fun <reified T : Any> fetchFromDatabase(
                 val result = task.result.getValue<T>()
                 Resource.Success(result)
             } else {
-                Resource.Error(task.exception?.localizedMessage.toString())
+                task.exception?.cause?.let { Resource.Error(it) }
             }
-            trySend(response).isSuccess
+            response?.let { trySend(it).isSuccess }
         }
 
         awaitClose {

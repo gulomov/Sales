@@ -13,6 +13,6 @@ interface AboutAppRepository {
 class AboutAppRepositoryImpl(private val database: FirebaseDatabase) : AboutAppRepository {
 
     override fun getAboutAppText(): Flow<Resource<AboutApp>> {
-        return fetchFromDatabase("aboutApp", database)
+        return fetchFromDatabase("about-app/appInfo", database)
     }
 }
