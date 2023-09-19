@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JetClientState">
+    <option name="draftsState">
+      <draftsState>
+        <option name="requests">
+          <list>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="d9def801-d160-48c4-a36d-abccf0cb3bdf" />
+              <option name="method" value="GET" />
+              <option name="name" value="word" />
+              <option name="pathVariables">
+                <list>
+                  <pathVariableState>
+                    <option name="key" value="word" />
+                    <option name="value" value="hello" />
+                  </pathVariableState>
+                </list>
+              </option>
+              <option name="url" value="{{baseUrl}}/api/v2/entries/en/{word}" />
+            </requestState>
+          </list>
+        </option>
+      </draftsState>
+    </option>
+    <option name="environmentGroups">
+      <list>
+        <environmentGroupState>
+          <option name="environments">
+            <list>
+              <environmentState>
+                <option name="id" value="dev" />
+                <option name="name" value="dev" />
+              </environmentState>
+            </list>
+          </option>
+          <option name="id" value="new_group" />
+          <option name="name" value="New Group" />
+        </environmentGroupState>
+      </list>
+    </option>
+    <option name="id" value="1b736583-2782-42bf-8ab0-ec716aa31fe3" />
+    <option name="selectedEnvironmentIds">
+      <set>
+        <option value="dev" />
+      </set>
+    </option>
+  </component>
+</project>
